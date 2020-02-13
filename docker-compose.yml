@@ -1,0 +1,29 @@
+version: '3'
+services:
+  medium_a:
+    image: nginx:1.13.0-alpine
+    container_name: medium_a
+    ports:
+      - '3000:80'
+    expose:
+      - 80
+    volumes:
+      - ///c/Users/PoolPC/volumns/sites/medium_a:/var/www/html/website
+      - ///c/Users/PoolPC/volumns/nginx:/etc/nginx
+  web:
+    build: .
+    links:
+      - redis
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/nodeapp
+    environment:
+      - MODE=prod
+      - CLOUDWATCH_REGION=us-west-2
+  redis:
+    image: "redis"
+    command: redis-server --requirepass 123456
+    ports:
+      - "6379:6379"
+

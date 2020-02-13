@@ -1,0 +1,28 @@
+kubectl get pods -n kube-system
+
+kubectl run my-nginx --image=nginx --replicas=2 --port=80
+
+kubectl get pods
+
+kubectl expose deployment my-nginx --port=80 --type=LoadBalancer
+
+kubectl get services
+
+-----------------------------
+kubectl get <pod/services> 
+kubectl describe <pod/services> 
+kubectl logs 
+kubectl exec 
+kubectl proxy
+
+kubectl expose
+kubectl label
+
+///deploy
+kubectl  scale <deployment name> –replicas=<Number of deployment replica>
+kubectl set <deployment name> <image:version>
+kubectl rollout undo <deployment name>
+
+---------------------------
+minikube docker-env
+docker-compose ip --build
